@@ -1,5 +1,6 @@
 .app {
     display: grid;
+    /* todo grid gaps  */
     grid-template-columns: 1 1fr;
     grid-row: repeat(2, 1fr);
     width: 100%;
@@ -8,13 +9,19 @@
 
 .prompter {
     grid-row: 1;
-    max-height: 75%;
+    overflow: scroll;
+    padding: 15px;
 }
 
 .control {
     grid-row: 2;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.text-input {
+    /* margin: 15px; */
+    /* TODO: look into sizing for <textarea> elements */
 }
 
 .box {
@@ -23,6 +30,17 @@
 
 #box-1 {}
 
-#box-2 {}
+#box-2 {
+    /* grid-column: 1/span3; */
+    grid-column: 1/4;
+}
 
-#box-3 {}
+#box-3 {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.buttons-field {
+    /* display: grid;
+    /* grid-template-rows: repeat(3, 1fr); */
+}
