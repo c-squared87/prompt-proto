@@ -2,39 +2,39 @@
 
 <head>
     <title>prompter.</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
     <div class="app">
 
-        <div class="prompter" id="box-1">
+        <div class="prompter box" id="box-1">
             <h1 data-prompter-field>
                 This is the active prompt text.
             </h1>
         </div>
 
-        <div class="input-field" id="box-2">
-            <!-- <input type="text" class="text-input" data-input-field><label for="text-input">Input Here.</label> -->
+        <div class="control">
+            <div class="input-field box" id="box-2">
+                <!-- <input type="text" class="text-input" data-input-field><label for="text-input">Input Here.</label> -->
 
-            <label for="text-input">Input Here.</label><textarea name="main-input" id="1" cols="30" rows="10" class="text-input" data-input-field></textarea>
-        </div>
-
-        <div class="control-panel" id="box-3">
-
-            <div class="buttons-field">
-                <button data-scrolling-btn>Scrolling Speed</button>
-                <button data-contrast-btn>High Contrast</button>
-                <button data-size-btn>Text Size</button>
-                <button data-view-btn>Alt View</button>
+                <label for="text-input">Input Here.</label><textarea name="main-input" id="1" cols="30" rows="10" class="text-input" data-input-field></textarea>
             </div>
 
+            <div class="buttons-panel box" id="box-3">
+
+                <div class="buttons-field">
+                    <button data-scrolling-btn>Scrolling Speed</button>
+                    <button data-contrast-btn>High Contrast</button>
+                    <button data-size-btn>Text Size</button>
+                    <button data-view-btn>Alt View</button>
+                </div>
+
+            </div>
         </div>
 
-        <h5 class="info-label">
-            Made by Craig [Github link] version 0.1
-        </h5>
+        <!-- <h5 class="info-label"> Made by Craig [Github link] version 0.1 </h5> -->
     </div>
 
     <script src="./main.js" type="text/javascript"></script>
