@@ -9,6 +9,11 @@ const sizeButton = document.querySelector('[data-size-btn]')
 const viewButton = document.querySelector('[data-view-btn]')
 
 //Listeners
+inputField.onkeyup = function() {
+    // console.log("keyup");
+    prompter.innerText = inputField.value.toUpperCase();
+}
+
 speedButton.addEventListener('click', e => {
     console.log("SPEED button clicked");
 })
