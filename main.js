@@ -39,3 +39,46 @@ sizeButton.addEventListener('click', e => {
 viewButton.addEventListener('click', e => {
     if (logging) console.log("VIEW button clicked");
 })
+
+
+// copied and pasted somewhat works lets rework this later.
+ScrollRate = 60;
+
+function scrollDiv_init() {
+
+    DivElmnt = document.getElementById('box-1');
+
+    ReachedMaxScroll = false;
+
+    DivElmnt.scrollTop = 0;
+    PreviousScrollTop = 0;
+
+    ScrollInterval = setInterval('scrollDiv()', ScrollRate);
+}
+
+function scrollDiv() {
+
+    if (!ReachedMaxScroll) {
+
+        DivElmnt.scrollTop = PreviousScrollTop;
+        PreviousScrollTop++;
+
+        ReachedMaxScroll = DivElmnt.scrollTop >= (DivElmnt.scrollHeight - DivElmnt.offsetHeight);
+    } else {
+        ReachedMaxScroll = (DivElmnt.scrollTop == 0) ? false : true;
+
+        DivElmnt.scrollTop = PreviousScrollTop;
+        PreviousScrollTop--;
+    }
+}
+
+function pauseDiv() {
+    clearInterval(ScrollInterval);
+}
+
+function resumeDiv() {
+    PreviousScrollTop = DivElmnt.scrollTop;
+    ScrollInterval = setInterval('scrollDiv()', ScrollRate);
+}
+
+scrollDiv_init();

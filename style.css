@@ -1,10 +1,13 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .app {
     display: grid;
+    position: relative;
+    margin: 10px;
     /* todo grid gaps  */
     grid-template-columns: 1 1fr;
     grid-row: repeat(2, 1fr);
@@ -13,12 +16,28 @@
 }
 
 .prompter {
+    position: absolute;
+    top: 0;
+    left: 0;
     grid-row: 1;
     overflow: scroll;
-    padding: 15px;
+    padding-left: 15px;
+    max-height: 50%;
+    min-height: 50%;
+    width: inherit;
+}
+
+.prompter h1 {
+    font-size: 77px;
 }
 
 .control {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-height: 50%;
+    min-height: 50%;
+    width: 100%;
     grid-row: 2;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -33,19 +52,11 @@ textarea {
     padding-right: 20px;
 }
 
-
-/* 
-.text-input {
-    height: 150px;
-    width: 500px;
-} */
-
 .box {
     border: solid red 1px;
 }
 
 #box-2 {
-    /* grid-column: 1/span3; */
     grid-column: 1/4;
 }
 
