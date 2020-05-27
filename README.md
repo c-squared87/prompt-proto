@@ -1,4 +1,2 @@
-Trello Planning Here:
+**Product Description**
 
-
-https://trello.com/b/FKl53Fhb/prompt
