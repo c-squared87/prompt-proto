@@ -2,23 +2,26 @@
 
 <head>
     <title>prompter.</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div class="app">
 
-        <div class="prompter">
+        <div class="prompter" id="box-1">
             <h1 data-prompter-field>
                 This is the active prompt text.
             </h1>
         </div>
 
-        <div class="input-field">
-            <input type="text" class="text-input" data-input-field><label for="text-input">Input Here.</label>
+        <div class="input-field" id="box-2">
+            <!-- <input type="text" class="text-input" data-input-field><label for="text-input">Input Here.</label> -->
+
+            <label for="text-input">Input Here.</label><textarea name="main-input" id="1" cols="30" rows="10" class="text-input" data-input-field></textarea>
         </div>
 
-        <div class="control-panel">
+        <div class="control-panel" id="box-3">
 
             <div class="buttons-field">
                 <button data-scrolling-btn>Scrolling Speed</button>
