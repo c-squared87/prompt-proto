@@ -25,10 +25,12 @@
     max-height: 50%;
     min-height: 50%;
     width: inherit;
+    background-color: black;
 }
 
 .prompter h1 {
     font-size: 77px;
+    color: tan;
 }
 
 .control {
