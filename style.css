@@ -1,3 +1,8 @@
+:root {
+    --primary-background-color: black;
+    --secondary-background-color: white;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -22,8 +27,8 @@
     grid-row: 1;
     overflow: scroll;
     padding-left: 15px;
-    max-height: 50%;
-    min-height: 50%;
+    max-height: 60%;
+    min-height: 60%;
     width: inherit;
     background-color: black;
 }
@@ -37,8 +42,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    max-height: 50%;
-    min-height: 50%;
+    max-height: 40%;
+    min-height: 40%;
     width: 100%;
     grid-row: 2;
     display: grid;
