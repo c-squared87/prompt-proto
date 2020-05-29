@@ -1,6 +1,8 @@
 :root {
     --primary-background-color: black;
     --secondary-background-color: white;
+    --primary-text-color: white;
+    --secondary-text-color: black;
 }
 
 * {
@@ -13,7 +15,6 @@
 .app {
     display: grid;
     position: relative;
-    margin: 10px;
     /* todo grid gaps  */
     grid-template-columns: 1 1fr;
     grid-row: repeat(2, 1fr);
@@ -31,7 +32,7 @@
     max-height: 60%;
     min-height: 60%;
     width: inherit;
-    background-color: black;
+    background-color: var(--primary-background-color);
 }
 
 .prompter h1 {
@@ -61,7 +62,8 @@ textarea {
 }
 
 .box {
-    border: solid red 1px;
+    /* border: solid red 1px; */
+    border: solid black 2px;
 }
 
 #box-2 {

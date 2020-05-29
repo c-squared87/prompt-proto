@@ -8,11 +8,15 @@ function updatePrompterDisplay() {
 }
 
 /*
-TODO: FIGURE OUT HOW TO DO SPEED AND SUCH VIA AN ENUM
+// TODO: FIGURE OUT HOW TO DO SPEED AND SUCH VIA AN ENUM
 
 ALSO OPTION FOR LINE BY LINE JUMPING
 
-CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS
+CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS WITH CURRENT VALUES
+- LETS TRY A DISPLAY BOX IN THE LOWER LEFT CORNER OF THE PROMPTER
+
+RESET TO TOP BUTTON? 
+- TODO: LETS USE THE 'ALT VIEW' BUTTON SINCE WE WONT BE GETTING TO THAT RIGHT YET.
 
 */
 
@@ -100,7 +104,20 @@ function cycleFontSize() {
 }
 
 function swapColorScheme() {
-    document.documentElement.style.setProperty('--primary-background-color', 'green');
+
+    // var _option = "";
+
+    // if (_option == color_A) {
+    //     _option = color_B
+    // }
+
+    // promptBKG.style.backgroundColor == color_A ? color_B : color_A;
+
+    // _option == color_A ? color_B : color_A;
+
+    // promptBKG.style.backgroundColor = _option;
+
+    // document.documentElement.style.setProperty('--primary-background-color', _option);
 }
 
 // Variables
@@ -128,6 +145,9 @@ var horizontal = true; // A false value will load the vertical view option when 
 
 var ableToScroll = false;
 var reachedMaxScroll = false;
+
+const color_A = "black";
+const color_B = "white";
 
 // Fields
 const prompter = document.querySelector('[data-prompter-field]');
@@ -171,7 +191,9 @@ speedButton.addEventListener('click', e => {
 
 contrastButton.addEventListener('click', e => {
     if (console_logging_active) console.log("CONTRAST button clicked");
-    promptBKG.style.backgroundColor = "white";
+    // promptBKG.style.backgroundColor = "white";
+    swapColorScheme();
+
 })
 
 sizeButton.addEventListener('click', e => {
