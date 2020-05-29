@@ -4,6 +4,7 @@ console_logging_active ? alert("logging is on dummy") : console_logging_active =
 
 function updatePrompterDisplay() {
     prompter.innerText = inputField.value.toUpperCase();
+
 }
 
 /*
@@ -12,8 +13,6 @@ TODO: FIGURE OUT HOW TO DO SPEED AND SUCH VIA AN ENUM
 ALSO OPTION FOR LINE BY LINE JUMPING
 
 CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS
-
-ADD END-OF-TEXT FOR MAIN DISPLAY
 
 */
 
@@ -50,7 +49,7 @@ function scrollDownPrompter() {
     scrollingDiv.scrollTop = previousScrollTop;
     previousScrollTop++;
     reachedMaxScroll = scrollingDiv.scrollTop >= (scrollingDiv.scrollHeight - scrollingDiv.offsetHeight);
-    console.log(("func " + currentScrollSpeed));
+    // console.log(("func " + currentScrollSpeed));
 }
 
 // this isnt used currently
@@ -79,12 +78,28 @@ function cycleScrollSpeed() {
             break;
     }
     clearInterval(ScrollInterval);
-    // console.log(currentScrollSpeed)
     ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
 }
 
+function cycleFontSize() {
+    switch (currentFontSize) {
+        case FontSizes.small:
+            currentFontSize = FontSizes.medium;
+            break;
+        case FontSizes.medium:
+            currentFontSize = FontSizes.large;
+            break;
+        case FontSizes.large:
+            currentFontSize = FontSizes.zoom;
+            break;
+        default:
+            currentFontSize = FontSizes.small;
+            break;
+    }
+    prompter.style.fontSize = currentFontSize;
+}
+
 function swapColorScheme() {
-    // getComputedStyle(document.documentElement).setProperty('--primary-background-color', 'green');
     document.documentElement.style.setProperty('--primary-background-color', 'green');
 }
 
@@ -115,14 +130,17 @@ var ableToScroll = false;
 var reachedMaxScroll = false;
 
 // Fields
-const prompter = document.querySelector('[data-prompter-field]')
-const inputField = document.querySelector('[data-input-field]')
+const prompter = document.querySelector('[data-prompter-field]');
+const inputField = document.querySelector('[data-input-field]');
+
+//FOR TESTING
+const promptBKG = document.getElementById("box-1");
 
 // Buttons
-const speedButton = document.querySelector('[data-scrolling-btn]')
-const contrastButton = document.querySelector('[data-contrast-btn]')
-const sizeButton = document.querySelector('[data-size-btn]')
-const viewButton = document.querySelector('[data-view-btn]')
+const speedButton = document.querySelector('[data-scrolling-btn]');
+const contrastButton = document.querySelector('[data-contrast-btn]');
+const sizeButton = document.querySelector('[data-size-btn]');
+const viewButton = document.querySelector('[data-view-btn]');
 
 // Listeners
 document.onkeydown = function(e) {
@@ -153,25 +171,12 @@ speedButton.addEventListener('click', e => {
 
 contrastButton.addEventListener('click', e => {
     if (console_logging_active) console.log("CONTRAST button clicked");
+    promptBKG.style.backgroundColor = "white";
 })
 
 sizeButton.addEventListener('click', e => {
     if (console_logging_active) console.log("SIZE button clicked");
-    switch (currentFontSize) {
-        case FontSizes.small:
-            currentFontSize = FontSizes.medium;
-            break;
-        case FontSizes.medium:
-            currentFontSize = FontSizes.large;
-            break;
-        case FontSizes.large:
-            currentFontSize = FontSizes.zoom;
-            break;
-        default:
-            currentFontSize = FontSizes.small;
-            break;
-    }
-    prompter.style.fontSize = currentFontSize;
+    cycleFontSize();
 
 })
 
@@ -181,5 +186,3 @@ viewButton.addEventListener('click', e => {
 
 // inititializes the scrolling action
 scrollDiv_init();
-
-swapColorScheme();
