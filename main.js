@@ -2,6 +2,16 @@ function updatePrompterDisplay() {
     prompter.innerText = inputField.value.toUpperCase();
 }
 
+/*
+TODO: FIGURE OUT HOW TO DO SPEED AND SUCH VIA AN ENUM
+
+ALSO OPTION FOR LINE BY LINE JUMPING
+
+CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS
+
+ADD END-OF-TEXT FOR MAIN DISPLAY
+
+*/
 
 function scrollDiv_init() {
     // TODO: can we use the other selector instead of the id?
