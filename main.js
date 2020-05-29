@@ -1,3 +1,7 @@
+var console_logging_active = false;
+
+console_logging_active ? alert("logging is on dummy") : console_logging_active = false;
+
 function updatePrompterDisplay() {
     prompter.innerText = inputField.value.toUpperCase();
 }
@@ -21,49 +25,62 @@ function scrollDiv_init() {
     scrollingDiv.scrollTop = 0;
     previousScrollTop = 0;
 
-    ScrollInterval = setInterval('scrollDiv()', scrollSpeed);
+    ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
 }
 
 function scrollDiv() {
+
+    // ableToScroll ? scrollDownPrompter() : console.log("not able");
+
+    // this is silly we will get back to this but it works.
     if (ableToScroll) {
         if (!reachedMaxScroll) {
-            scrollingDiv.scrollTop = previousScrollTop;
-            previousScrollTop++;
-            reachedMaxScroll = scrollingDiv.scrollTop >= (scrollingDiv.scrollHeight - scrollingDiv.offsetHeight);
-            console.log(("func " + scrollSpeed));
+            scrollDownPrompter();
         } else {
-            reachedMaxScroll = (scrollingDiv.scrollTop == 0) ? false : true;
-            scrollingDiv.scrollTop = previousScrollTop;
-            previousScrollTop--;
+            // This is disabled for now until scrolling back up is implemented.
+
+            // reachedMaxScroll = (scrollingDiv.scrollTop == 0) ? false : true;
+            // scrollingDiv.scrollTop = previousScrollTop;
+            // previousScrollTop--;
         }
     }
+}
+
+function scrollDownPrompter() {
+    scrollingDiv.scrollTop = previousScrollTop;
+    previousScrollTop++;
+    reachedMaxScroll = scrollingDiv.scrollTop >= (scrollingDiv.scrollHeight - scrollingDiv.offsetHeight);
+    console.log(("func " + currentScrollSpeed));
 }
 
 // this isnt used currently
 function pauseDiv() {
     clearInterval(ScrollInterval);
 }
-
 // this isnt used currently
 function resumeDiv() {
     previousScrollTop = scrollingDiv.scrollTop;
-    ScrollInterval = setInterval('scrollDiv()', scrollSpeed);
+    ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
 }
 
-function increaseScrollSpeed() {
-    switch (scrollSpeed) {
-        case 10:
-            scrollSpeed = 8;
+function cycleScrollSpeed() {
+    switch (currentScrollSpeed) {
+        case ScrollSpeeds.slow:
+            currentScrollSpeed = ScrollSpeeds.medium;
             break;
-        case 8:
-            scrollSpeed = 2;
+        case ScrollSpeeds.medium:
+            currentScrollSpeed = ScrollSpeeds.fast;
             break;
-        case 2:
-            scrollSpeed = 10;
+        case ScrollSpeeds.fast:
+            currentScrollSpeed = ScrollSpeeds.keystroke;
+            break;
+        default:
+            currentScrollSpeed = ScrollSpeeds.slow
             break;
     }
     clearInterval(ScrollInterval);
-    ScrollInterval = setInterval('scrollDiv()', scrollSpeed);
+    // console.log(currentScrollSpeed)
+    ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
 }
 
 function swapColorScheme() {
@@ -72,9 +89,28 @@ function swapColorScheme() {
 }
 
 // Variables
-var scrollSpeed = 10; // How fast we scroll, maybe have a second value for slower rewind?
+const ScrollSpeeds = {
+    "keystroke": 0,
+    "slow": 14,
+    "medium": 8,
+    "fast": 3,
+}
+
+const FontSizes = {
+    "small": "55", // Sainz
+    "medium": "66",
+    "large": "77", // Bottas
+    "zoom": "88", // Kubica
+}
+
+Object.freeze(ScrollSpeeds);
+Object.freeze(FontSizes);
+
+var currentScrollSpeed = ScrollSpeeds.medium; // maybe have a second value for slower rewind?
+var currentFontSize = FontSizes.medium;
+
 var horizontal = true; // A false value will load the vertical view option when we build that.
-var console_logging_active = false;
+
 var ableToScroll = false;
 var reachedMaxScroll = false;
 
@@ -112,7 +148,7 @@ inputField.onkeyup = function() {
 
 speedButton.addEventListener('click', e => {
     if (console_logging_active) console.log("SPEED button clicked");
-    increaseScrollSpeed();
+    cycleScrollSpeed();
 })
 
 contrastButton.addEventListener('click', e => {
@@ -121,6 +157,22 @@ contrastButton.addEventListener('click', e => {
 
 sizeButton.addEventListener('click', e => {
     if (console_logging_active) console.log("SIZE button clicked");
+    switch (currentFontSize) {
+        case FontSizes.small:
+            currentFontSize = FontSizes.medium;
+            break;
+        case FontSizes.medium:
+            currentFontSize = FontSizes.large;
+            break;
+        case FontSizes.large:
+            currentFontSize = FontSizes.zoom;
+            break;
+        default:
+            currentFontSize = FontSizes.small;
+            break;
+    }
+    prompter.style.fontSize = currentFontSize;
+
 })
 
 viewButton.addEventListener('click', e => {
