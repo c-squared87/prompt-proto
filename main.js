@@ -40,6 +40,11 @@ function scrollDiv_init() {
     ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
 }
 
+function resetPrompter() {
+    inputField.value = "";
+    updatePrompterDisplay();
+}
+
 function scrollDiv() {
 
     // ableToScroll ? scrollDownPrompter() : console.log("not able");
@@ -83,7 +88,7 @@ function cycleScrollSpeed() {
             currentScrollSpeed = ScrollSpeeds.fast;
             break;
         case ScrollSpeeds.fast:
-            currentScrollSpeed = ScrollSpeeds.keystroke;
+            currentScrollSpeed = ScrollSpeeds.manual;
             break;
         default:
             currentScrollSpeed = ScrollSpeeds.slow
@@ -130,11 +135,13 @@ function swapColorScheme() {
 
 // Variables
 const ScrollSpeeds = {
-    "keystroke": 0,
+    "manual": 0,
     "slow": 14,
     "medium": 8,
     "fast": 3,
 }
+
+
 
 const FontSizes = {
     "small": "55", // Sainz
@@ -211,7 +218,7 @@ sizeButton.addEventListener('click', e => {
 
 resetButton.addEventListener('click', e => {
     if (console_logging_active) console.log("RESET button clicked");
-    scrollDiv_init();
+    resetPrompter();
 })
 
 // inititializes the scrolling action
