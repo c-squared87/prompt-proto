@@ -1,5 +1,4 @@
 var console_logging_active = false;
-
 console_logging_active ? alert("logging is on dummy") : console_logging_active = false;
 
 function updatePrompterDisplay() {
@@ -8,7 +7,6 @@ function updatePrompterDisplay() {
 }
 
 /*
-// TODO: FIGURE OUT HOW TO DO SPEED AND SUCH VIA AN ENUM
 
 ALSO OPTION FOR LINE BY LINE JUMPING
 
@@ -18,12 +16,23 @@ CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS WITH CURRENT VALUES
 RESET TO TOP BUTTON? 
 - TODO: LETS USE THE 'ALT VIEW' BUTTON SINCE WE WONT BE GETTING TO THAT RIGHT YET.
 
+
+WEEK OF THIS TO DO:
+make the status bar
+STATUS BAR LAYOUT
+
+[ EDIT MODE   SCROLL SPD TXT SIZE TIME ]
+
+implement edit/presenter mode.
+
+
 */
 
+// TODO: make this a reset function
 function scrollDiv_init() {
     // TODO: can we use the other selector instead of the id?
     // EDIT: I tried it but the selector needs be the parent div not the prompter directly.
-    scrollingDiv = document.getElementById('box-1');
+    scrollingDiv = document.getElementById('box-1'); // move this?
     reachedMaxScroll = false;
     scrollingDiv.scrollTop = 0;
     previousScrollTop = 0;
@@ -35,13 +44,12 @@ function scrollDiv() {
 
     // ableToScroll ? scrollDownPrompter() : console.log("not able");
 
-    // this is silly we will get back to this but it works.
+    // this is silly but it works.
     if (ableToScroll) {
         if (!reachedMaxScroll) {
             scrollDownPrompter();
         } else {
             // This is disabled for now until scrolling back up is implemented.
-
             // reachedMaxScroll = (scrollingDiv.scrollTop == 0) ? false : true;
             // scrollingDiv.scrollTop = previousScrollTop;
             // previousScrollTop--;
@@ -160,7 +168,7 @@ const promptBKG = document.getElementById("box-1");
 const speedButton = document.querySelector('[data-scrolling-btn]');
 const contrastButton = document.querySelector('[data-contrast-btn]');
 const sizeButton = document.querySelector('[data-size-btn]');
-const viewButton = document.querySelector('[data-view-btn]');
+const resetButton = document.querySelector('[data-view-btn]');
 
 // Listeners
 document.onkeydown = function(e) {
@@ -191,7 +199,6 @@ speedButton.addEventListener('click', e => {
 
 contrastButton.addEventListener('click', e => {
     if (console_logging_active) console.log("CONTRAST button clicked");
-    // promptBKG.style.backgroundColor = "white";
     swapColorScheme();
 
 })
@@ -202,8 +209,9 @@ sizeButton.addEventListener('click', e => {
 
 })
 
-viewButton.addEventListener('click', e => {
-    if (console_logging_active) console.log("VIEW button clicked");
+resetButton.addEventListener('click', e => {
+    if (console_logging_active) console.log("RESET button clicked");
+    scrollDiv_init();
 })
 
 // inititializes the scrolling action

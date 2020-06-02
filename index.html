@@ -6,13 +6,16 @@
 </head>
 
 <body>
-    <!-- TODO: Build a message field that can show things when they are changed -->
+    <!-- TODO: Build a display field  that can show which mode we are in and params -->
+
+
     <div class="app">
 
         <div class="prompter box" id="box-1">
             <h1 data-prompter-field>
                 This is the active prompt text.
             </h1>
+            <div class="status" data-status-field></div>
         </div>
 
         <div class="control">
@@ -27,10 +30,10 @@
 
             <div class="buttons-panel box" id="box-3">
 
+                <button data-view-btn>Reset Prompter</button>
                 <button data-scrolling-btn>Scrolling Speed</button>
                 <button data-contrast-btn>High Contrast</button>
                 <button data-size-btn>Text Size</button>
-                <button data-view-btn>Alt View</button>
 
             </div>
         </div>
