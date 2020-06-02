@@ -5,19 +5,10 @@ function updatePrompterDisplay() {
     prompter.innerText = inputField.value.toUpperCase();
 }
 
+// TODO: CLEAN THIS UP.
 function updateInfoDisplay() {
     // infoField.innerText = "TXT " + currentFontSize + " SPD " + currentScrollSpeed;
 
-    var d = new Date(),
-        minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
-        hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
-        ampm = d.getHours() >= 12 ? 'pm' : 'am',
-        months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    // return days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;
-
-    // infoField.innerText += hours + " " + minutes;
-    clockDisplay.innerText = hours + " : " + minutes;
 }
 /*
 
@@ -26,15 +17,10 @@ TODO: IMPERATIVE THINGS:
     - STYLE BUTTONS
     - MERGE TO MASTER - THIS IS A RELEASE READY.
 
-
 ALSO OPTION FOR LINE BY LINE JUMPING
 
 CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS WITH CURRENT VALUES
 - LETS TRY A DISPLAY BOX IN THE LOWER LEFT CORNER OF THE PROMPTER
-
-RESET TO TOP BUTTON? 
-- TODO: LETS USE THE 'ALT VIEW' BUTTON SINCE WE WONT BE GETTING TO THAT RIGHT YET.
-
 
 WEEK OF THIS TO DO:
 make the status bar
@@ -57,6 +43,12 @@ function scrollDiv_init() {
     previousScrollTop = 0;
 
     ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
+
+    updateClock();
+
+    setInterval(function() {
+        updateClock();
+    }, 1000);
 
     updateInfoDisplay();
 
@@ -85,6 +77,28 @@ function scrollDiv() {
     }
 }
 
+function updateClock() {
+
+    // TODO: GET TIMEZONE IN THERE.
+
+    var d = new Date();
+    seconds = d.getSeconds().toString().length == 1 ? '0' + d.getSeconds() : d.getSeconds();
+    minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes();
+    hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours();
+    // ampm = d.getHours() >= 12 ? 'pm' : 'am',
+    // months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    // days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    // return days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;
+    // console.log(d.getTimezoneOffset());
+
+    // infoField.innerText += hours + " " + minutes;
+    clockDisplay.innerText = hours + " : " + minutes + " : " + seconds;
+}
+
+function clock() {
+
+}
+
 function scrollDownPrompter() {
     scrollingDiv.scrollTop = previousScrollTop;
     previousScrollTop++;
@@ -102,7 +116,7 @@ function resumeDiv() {
 }
 
 function cycleScrollSpeed() {
-    speedDisplay.innerText = "SPEED "
+    speedDisplay.innerText = ""
     switch (currentScrollSpeed) {
         case ScrollSpeeds.slow:
             currentScrollSpeed = ScrollSpeeds.medium;
@@ -146,7 +160,6 @@ function cycleFontSize() {
     }
     prompter.style.fontSize = currentFontSize;
     updateInfoDisplay();
-
 }
 
 // Variables
@@ -199,7 +212,6 @@ const promptBKG = document.getElementById("box-1");
 
 // Buttons
 const speedButton = document.querySelector('[data-scrolling-btn]');
-// const contrastButton = document.querySelector('[data-contrast-btn]');
 const sizeButton = document.querySelector('[data-size-btn]');
 const resetButton = document.querySelector('[data-view-btn]');
 

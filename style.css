@@ -77,6 +77,18 @@ button:hover {
     color: var(--primary-text-color);
 }
 
+.data-label {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 22px;
+}
+
+.clock-display {
+    padding: 5px;
+    text-align: center;
+    font-size: 22px;
+}
+
 .box {
     /* border: solid red 1px; */
     border: solid black 2px;
