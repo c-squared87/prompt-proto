@@ -5,24 +5,27 @@ Prompter (working title) is a product designed to promote confidence in dialog d
 
 
 __________
+**User Guide**
+
+
+Use the ALT/OPTION key to scroll down. Scrolling up is accomplished by 
+
+
+__________
 **User Stories**
 
 
 - [X] I can enter text in a field and it is rendered in real time.
 - [X] I can control when the prompter scrolls down
-- [ ] I can scroll up if I miss a line.
+- [ ] I can scroll up if I miss a line with the keyboard.
 - [X] I can adjust the size of text elements.
 - [ ] I can select between multiple color schemes to enhance readability.
 - [ ] I can have a horizontal or vertical layout for readability.
-- [ ] I can save sessions for a later time.
+- [ ] I can save text files and prompts for a later time.
 
 ______
 **Features To Implement**
 
 
-
-______
-**//TODO:**
-
-
-Preload instructions in the text area field and the main header. This way when the application is loaded for the first time the user can see quickly how to operate it.
+Clean up the code I know it is ugly and could work better.
+Dial viewing options.
