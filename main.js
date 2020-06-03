@@ -5,37 +5,13 @@ function updatePrompterDisplay() {
     prompter.innerText = inputField.value.toUpperCase();
 }
 
-// TODO: CLEAN THIS UP.
+// TODO: UNUSED FOR NOW.
 function updateInfoDisplay() {
-    // infoField.innerText = "TXT " + currentFontSize + " SPD " + currentScrollSpeed;
 
 }
-/*
 
-TODO: IMPERATIVE THINGS:
-    - STYLE AND LINK UP DISPLAY
-    - STYLE BUTTONS
-    - MERGE TO MASTER - THIS IS A RELEASE READY.
-
-ALSO OPTION FOR LINE BY LINE JUMPING
-
-CONSOLE DISPLAY FOR SETTINGS? OR UPDATE BUTTON LABELS WITH CURRENT VALUES
-- LETS TRY A DISPLAY BOX IN THE LOWER LEFT CORNER OF THE PROMPTER
-
-WEEK OF THIS TO DO:
-make the status bar
-STATUS BAR LAYOUT
-
-[ EDIT MODE   SCROLL SPD TXT SIZE TIME ]
-
-implement edit/presenter mode.
-
-
-*/
-
+// TODO: COMMENT THIS ONE
 function scrollDiv_init() {
-    // TODO: can we use the other selector instead of the id?
-    // EDIT: I tried it but the selector needs be the parent div not the prompter directly.
     scrollingDiv = document.getElementById('box-1'); // move this?
 
     reachedMaxScroll = false;
@@ -51,8 +27,6 @@ function scrollDiv_init() {
     }, 1000);
 
     updateInfoDisplay();
-
-
 }
 
 function resetPrompter() {
@@ -60,19 +34,13 @@ function resetPrompter() {
     updatePrompterDisplay();
 }
 
+// TODO: FIGURE OUT HOW TO RESET THE reachedMaxScroll BOOL IF NOT AT BOTTOM E.G. WHEN YOU MANUALLY SCROLL UP.
 function scrollDiv() {
-
-    // ableToScroll ? scrollDownPrompter() : console.log("not able");
 
     // this is silly but it works.
     if (ableToScroll) {
         if (!reachedMaxScroll) {
             scrollDownPrompter();
-        } else {
-            // This is disabled for now until scrolling back up is implemented.
-            // reachedMaxScroll = (scrollingDiv.scrollTop == 0) ? false : true;
-            // scrollingDiv.scrollTop = previousScrollTop;
-            // previousScrollTop--;
         }
     }
 }
@@ -80,6 +48,7 @@ function scrollDiv() {
 function updateClock() {
 
     // TODO: GET TIMEZONE IN THERE.
+    // USE getTimezoneOffset - then figure out to take the outputs to a GMT+ value.
 
     var d = new Date();
     seconds = d.getSeconds().toString().length == 1 ? '0' + d.getSeconds() : d.getSeconds();
@@ -89,15 +58,10 @@ function updateClock() {
     // months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     // days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     // return days[d.getDay()] + ' ' + months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;
-    // console.log(d.getTimezoneOffset());
 
-    // infoField.innerText += hours + " " + minutes;
     clockDisplay.innerText = hours + " : " + minutes + " : " + seconds;
 }
 
-function clock() {
-
-}
 
 function scrollDownPrompter() {
     scrollingDiv.scrollTop = previousScrollTop;
@@ -105,18 +69,12 @@ function scrollDownPrompter() {
     reachedMaxScroll = scrollingDiv.scrollTop >= (scrollingDiv.scrollHeight - scrollingDiv.offsetHeight);
 }
 
-// this isnt used currently
-function pauseDiv() {
-    clearInterval(ScrollInterval);
-}
-// this isnt used currently
-function resumeDiv() {
-    previousScrollTop = scrollingDiv.scrollTop;
-    ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
-}
 
+// TODO: REBUILD AND STREAMLINE ONCE DICTIONARIES ARE IMPLEMENTED
 function cycleScrollSpeed() {
-    speedDisplay.innerText = ""
+
+    speedDisplay.innerText = "";
+
     switch (currentScrollSpeed) {
         case ScrollSpeeds.slow:
             currentScrollSpeed = ScrollSpeeds.medium;
@@ -136,29 +94,34 @@ function cycleScrollSpeed() {
             break;
     }
 
-    speedDisplay.innerText = currentScrollSpeed.
     clearInterval(ScrollInterval);
     ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
-    updateInfoDisplay();
-
 }
 
+// TODO: REBUILD AND STREAMLINE ONCE DICTIONARIES ARE IMPLEMENTED
 function cycleFontSize() {
+
     switch (currentFontSize) {
         case FontSizes.small:
             currentFontSize = FontSizes.medium;
+            textSizeDisplay.innerText = "MEDIUM";
             break;
         case FontSizes.medium:
             currentFontSize = FontSizes.large;
+            textSizeDisplay.innerText = "LARGE";
             break;
         case FontSizes.large:
             currentFontSize = FontSizes.zoom;
+            textSizeDisplay.innerText = "XLARGE";
             break;
         default:
             currentFontSize = FontSizes.small;
+            textSizeDisplay.innerText = "SMALL";
             break;
     }
+
     prompter.style.fontSize = currentFontSize;
+
     updateInfoDisplay();
 }
 
@@ -170,12 +133,6 @@ const ScrollSpeeds = {
     "fast": 3,
 }
 
-// const FontSizes = {
-//     "small": "55", // Sainz
-//     "medium": "66",
-//     "large": "77", // Bottas
-//     "zoom": "88", // Kubica
-// }
 const FontSizes = {
     small: "55", // Sainz
     medium: "66",
@@ -186,6 +143,7 @@ const FontSizes = {
 Object.freeze(ScrollSpeeds);
 Object.freeze(FontSizes);
 
+// TODO: MOVE THESE TO INIT? THEN WE CAN UPDATE UI AND SUCH
 var currentScrollSpeed = ScrollSpeeds.medium; // maybe have a second value for slower rewind?
 var currentFontSize = FontSizes.medium;
 
@@ -193,9 +151,6 @@ var horizontal = true; // A false value will load the vertical view option when 
 
 var ableToScroll = false;
 var reachedMaxScroll = false;
-
-const color_A = "black";
-const color_B = "white";
 
 // Fields
 const prompter = document.querySelector('[data-prompter-field]');
@@ -206,9 +161,6 @@ const infoField = document.querySelector('[data-session-info]');
 const textSizeDisplay = document.querySelector('[data-size-field]');
 const speedDisplay = document.querySelector('[data-speed-field]');
 const clockDisplay = document.querySelector('[data-clock-field]');
-
-//FOR TESTING
-const promptBKG = document.getElementById("box-1");
 
 // Buttons
 const speedButton = document.querySelector('[data-scrolling-btn]');
@@ -242,11 +194,6 @@ speedButton.addEventListener('click', e => {
     cycleScrollSpeed();
 })
 
-// contrastButton.addEventListener('click', e => {
-//     if (console_logging_active) console.log("CONTRAST button clicked");
-//     swapColorScheme();
-
-// })
 
 sizeButton.addEventListener('click', e => {
     if (console_logging_active) console.log("SIZE button clicked");

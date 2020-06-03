@@ -83,6 +83,8 @@ button:hover {
     font-size: 22px;
 }
 
+.size-display,
+.speed-display,
 .clock-display {
     padding: 5px;
     text-align: center;
