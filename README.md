@@ -1,6 +1,9 @@
 **Product Description**
 
 
+LINK: https://c-squared87.github.io/prompt-proto/
+
+
 Prompter (working title) is a product designed to promote confidence in dialog during online presentations. User can input and edit text prior to a presentation and then can execute with confidence with the application acting as a teleprompter. The UI is designed to place the teleprompter right under the users webcam so that visual contact with a laptop webcam can be maintained during the reading.
 
 
