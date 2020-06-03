@@ -1,3 +1,7 @@
+/*
+    thank you for visiting the spagetti factory today how many in your party?
+*/
+
 var console_logging_active = false;
 console_logging_active ? alert("logging is on dummy") : console_logging_active = false;
 
@@ -7,11 +11,13 @@ function updatePrompterDisplay() {
 
 // TODO: UNUSED FOR NOW.
 function updateInfoDisplay() {
-
+    cycleFontSize();
+    cycleScrollSpeed();
 }
 
 // TODO: COMMENT THIS ONE
 function scrollDiv_init() {
+
     scrollingDiv = document.getElementById('box-1'); // move this?
 
     reachedMaxScroll = false;
@@ -20,10 +26,10 @@ function scrollDiv_init() {
 
     ScrollInterval = setInterval('scrollDiv()', currentScrollSpeed);
 
-    updateClock();
+    startClock();
 
     setInterval(function() {
-        updateClock();
+        startClock();
     }, 1000);
 
     updateInfoDisplay();
@@ -36,7 +42,6 @@ function resetPrompter() {
 
 // TODO: FIGURE OUT HOW TO RESET THE reachedMaxScroll BOOL IF NOT AT BOTTOM E.G. WHEN YOU MANUALLY SCROLL UP.
 function scrollDiv() {
-
     // this is silly but it works.
     if (ableToScroll) {
         if (!reachedMaxScroll) {
@@ -45,7 +50,7 @@ function scrollDiv() {
     }
 }
 
-function updateClock() {
+function startClock() {
 
     // TODO: GET TIMEZONE IN THERE.
     // USE getTimezoneOffset - then figure out to take the outputs to a GMT+ value.
@@ -78,7 +83,7 @@ function cycleScrollSpeed() {
     switch (currentScrollSpeed) {
         case ScrollSpeeds.slow:
             currentScrollSpeed = ScrollSpeeds.medium;
-            speedDisplay.innerText += "MED"
+            speedDisplay.innerText += "MEDIUM"
             break;
         case ScrollSpeeds.medium:
             currentScrollSpeed = ScrollSpeeds.fast;
@@ -122,7 +127,7 @@ function cycleFontSize() {
 
     prompter.style.fontSize = currentFontSize;
 
-    updateInfoDisplay();
+    // updateInfoDisplay();
 }
 
 // Variables
@@ -140,12 +145,12 @@ const FontSizes = {
     zoom: "88", // Kubica
 }
 
-Object.freeze(ScrollSpeeds);
-Object.freeze(FontSizes);
+// Object.freeze(ScrollSpeeds);
+// Object.freeze(FontSizes);
 
 // TODO: MOVE THESE TO INIT? THEN WE CAN UPDATE UI AND SUCH
-var currentScrollSpeed = ScrollSpeeds.medium; // maybe have a second value for slower rewind?
-var currentFontSize = FontSizes.medium;
+var currentScrollSpeed = ScrollSpeeds.slow; // maybe have a second value for slower rewind?
+var currentFontSize = FontSizes.small;
 
 var horizontal = true; // A false value will load the vertical view option when we build that.
 
