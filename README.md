@@ -1,17 +1,18 @@
-# Product Description
+# Prompter
+## Product Description
 
 LINK: https://c-squared87.github.io/prompt-proto/
 
-Prompter product designed to promote confidence in delivering dialog during online presentations. User can input and edit text prior to a presentation and then can execute with the application acting as a teleprompter when live. The UI is designed to place the teleprompter right under the users webcam on a laptop so that visual contact with a webcam can be maintained during the reading improving viewer engagement.
+Prompter is product designed to promote confidence in delivering dialog during online presentations. User can input and edit text prior to a presentation and then can execute with the application acting as a teleprompter when live. The UI is designed to place the teleprompter right under the users webcam on a laptop so that visual contact with a webcam can be maintained during the reading improving viewer engagement.
 
 
-**User Guide**
+## User Guide
 
 CLICK to select the edit field to add text, and the CLICK the prompter field to enable scrolling control.
 
 Use the SPACE key to scroll down.
 
-**User Stories**
+## User Stories
 
 - [X] I can enter text in a field and it is rendered in real time.
 - [X] I can control when the prompter scrolls down
